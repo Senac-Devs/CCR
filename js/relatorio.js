@@ -79,6 +79,7 @@ function limpaTabela(){
 }
 
 function clearSearch() {
+    limpaTabela()
     const listaConsultas =[];
     dataInicial.value = ""
     dataFinal.value = ""

@@ -66,6 +66,21 @@ header {
     margin-bottom: 10px;
 }
 .btnNav {
+    text-align: center;
+    font-size: 90%;
+    padding: 8px;
+    border-radius: 0 14px;
+    text-decoration: none;
+    border: none;
+    background: var(--color-text);
+    color: var(--color-text2);
+    cursor: pointer;
+}
+.btnNav:hover {
+    opacity: 0.8;
+}
+
+.btnNavRel {
     margin-top: 50px;
     text-align: center;
     font-size: 90%;
@@ -77,10 +92,10 @@ header {
     border: none;
     background: var(--color-text);
     color: var(--color-text2);
-}
-.btnNav:hover {
+  }
+  .btnNavRel:hover {
     opacity: 0.8;
-}
+  }
 .sair {
     margin-top: 50px;
     text-align: center;
@@ -113,16 +128,31 @@ main {
     width: 950px;
     border-radius: 0 14px;
     overflow: auto;
-    /* position: absolute; */
 }
 .title-rel {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     text-align: center;
     color: var(--color-text3);
+}
+h4 {
+    font-size: 18px;
+}
+.totais {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 .conteudo-group {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+    gap: 16px;
+}
+.conteudo-group1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
     flex: 1;
     gap: 8px;
 }
@@ -141,6 +171,12 @@ select {
     border: none;
     background-color: #f0f0f0;
 }
+#status-imagem {
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    color: var(--color-text3);
+}
 h4 {
     color: var(--color-text3);
 }
@@ -148,7 +184,7 @@ table {
     margin: 6px 0;
     border-collapse: collapse;
     width: 100%;
-    font-size: 12px;
+    font-size: 16px;
     color: var(--color-text3);
 }
 td,

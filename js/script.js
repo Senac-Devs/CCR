@@ -23,7 +23,7 @@ function addEventListenerElem(elementoId){
 
 function exibeGuiaConvenio() {
     const status = document.getElementById("status-imagem");
-    status.innerText = "arquivo carregado: " + this?.files[0].name;
+    status.innerText = this?.files[0].name;
 }
 
 function insereTable(consultas) {
@@ -51,19 +51,18 @@ function insereTable(consultas) {
             if (cols[j] == "imagem" && consultas[i][cols[j]] == "undefined") {
                 cell.innerHTML =
                     //'<input type="button" value="Enviar" class="btnBaixar"/>';
-                    `<div style="display: flex; flex-direction: column; align-items: center;">
+                    `<div class="conteudo-group1" >
                     <label class="btnNav" for="guiaParaEnviar-id-${i}">Anexar</label>
-                <span id="status-imagem"></span>
+                <span id="status-imagem" style="font-size: 8px;"></span>
                 <input type="file" multiple="false" capture="camera" style="display: none;" accept="image/*" id="guiaParaEnviar-id-${i}"/>
-                <input type="submit" value="Enviar" class="btnEnviarGuia" onclick="coletarGuiaEnviar('guiaParaEnviar-id-${i}')"/></div>
+                <label class="btnNav" onclick="coletarGuiaEnviar('guiaParaEnviar-id-${i}')">Enviar</label></div>
                 `;
                 addEventListenerElem(`guiaParaEnviar-id-${i}`);
             } else if (
                 cols[j] == "imagem" &&
                 consultas[i][cols[j]] !== "undefined"
             ) {
-                cell.innerHTML = `<input type="button" value="Ver" class="btnBaixar"
-                    onclick="exibeGuia('${consultas[i][cols[j]]}')"/>`;
+                cell.innerHTML = `<div class="conteudo-group1" ><label class="btnNav" onclick="exibeGuia('${consultas[i][cols[j]]}')">Visualizar</label></div>`;
             } else if (cols[j] == "data") {
                 let data = consultas[i][cols[j]].split("T");
                 let dataFormat = data[0].split("-").reverse().join("/");
@@ -80,7 +79,7 @@ function insereTable(consultas) {
             if (cols[j] == "Ações") {
                 cell.innerHTML =
                     //'<button type="button" class="button">Excluir</button></div>';
-                    `<input type="button" value="Excluir" class="btnExcluirConsul" onclick="deleteConsulta('${i}')"/>`;
+                    `<div class="conteudo-group1" ><label class="btnNav" onclick="deleteConsulta('${i}')">Excluir</label></div>`;
             }
         }
     }

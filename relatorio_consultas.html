@@ -1,250 +1,160 @@
 <!DOCTYPE html>
 <html lang="PT-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="./css/rel_consulta.css" />
-        <title>Relatório de Consultas Realizadas</title>
-        <script src="./js/login.js"></script>
-    </head>
 
-    <body>
-        <header>
-            <div class="relogio">
-                <div>
-                    <output id="datata"></output>
-                </div>
-                <div>
-                    <output id="hora"></output>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/rel_consulta.css" />
+    <title>Relatório de Consultas Realizadas</title>
+    <script src="./js/login.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="relogio">
+            <div>
+                <output id="datata"></output>
             </div>
-            <div class="nav-master">
-                <div>
-                    <h1 class="name-sistem">CR-Med</h1>
-                </div>
+            <div>
+                <output id="hora"></output>
+            </div>
+        </div>
+        <div class="nav-master">
+            <div>
+                <h1 class="name-sistem">CR-Med</h1>
+            </div>
 
-                <nav id="nav" class="nav">
-                    <button
-                        aria-label="Abrir Menu"
-                        id="btn-mobile"
-                        aria-haspopup="true"
-                        aria-controls="menu"
-                        aria-expanded="false"
-                    >
-                        Menu
-                        <span id="hamburger"></span>
+            <nav id="nav" class="nav">
+                <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu"
+                    aria-expanded="false">
+                    Menu
+                    <span id="hamburger"></span>
+                </button>
+                <ul class="lista">
+                    <li>
+                        <a id="theme" onclick="toggleTheme()" class="btnNavRel" style="cursor: pointer">
+                            Dark Mode
+                            <span id="status-mode">off</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cad_consulta.html" id="btnNav" class="btnNavRel">
+                            Cadastro de Atendimento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./relatorio_consultas.html" id="btnNav1" class="btnNavRel">
+                            Relatório de Atendimento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="sair" class="sair" onclick="deslogar()">Sair</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="tableId" class="relatorio-consulta">
+            <div class="title-rel">
+                <h1>Relatório de Consultas Realizadas</h1>
+            </div>
+            <hr />
+            <div class="conteudo-group">
+                <div>
+                    <input id="dataInicial" type="datetime-local" />
+                    <input id="dataFinal" type="datetime-local" />
+                    <select id="novoConvenio"></select>
+
+                    <button class="button" type="button" id="btnFiltrar" onclick="filterSearch()">
+                        Filtrar
                     </button>
-                    <ul class="lista">
-                        <li>
-                            <a
-                                id="theme"
-                                onclick="toggleTheme()"
-                                class="btnNav"
-                                style="cursor: pointer"
-                            >
-                                Dark Mode
-                                <span id="status-mode">off</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="./cad_consulta.html"
-                                id="btnNav"
-                                class="btnNav"
-                            >
-                                Cadastro de Atendimento
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="./relatorio_consultas.html"
-                                id="btnNav1"
-                                class="btnNav"
-                            >
-                                Relatório de Atendimento
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                id="sair"
-                                class="sair"
-                                onclick="deslogar()"
-                                >Sair</a
-                            >
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <div id="tableId" class="relatorio-consulta">
-                <div class="title-rel">
-                    <h1>Relatório de Consultas Realizadas</h1>
+                    <button class="button" type="button" id="btnLimpar" onclick="clearSearch()">
+                        Limpar
+                    </button>
                 </div>
-                <hr />
-                <div class="conteudo-group">
-                    <div>
-                        <input id="dataInicial" type="datetime-local" />
-                        <input id="dataFinal" type="datetime-local" />
-                        <select id="novoConvenio"></select>
 
-                        <button
-                            class="button"
-                            type="button"
-                            id="btnFiltrar"
-                            onclick="filterSearch()"
-                        >
-                            Filtrar
-                        </button>
-                        <button
-                            class="button"
-                            type="button"
-                            id="btnLimpar"
-                            onclick="clearSearch()"
-                        >
-                            Limpar
-                        </button>
-                    </div>
-
+                <div style="overflow-x: auto; width: 100%;">
+                    <table id="table">
+                        <tr>
+                            <th>Nome do Paciente</th>
+                            <th>Nº cartão/guia</th>
+                            <th>Data/Hora da Consulta</th>
+                            <th>Convênio</th>
+                            <th>Valor da Consulta</th>
+                            <th>Img Guia</th>
+                            <th>Editar/Excluir</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="totais">
                     <h4>
                         Consultas no periodo:
                         <span id="consultasTotal"></span>
                     </h4>
-                    <div style="overflow-x: auto">
-                        <table id="table">
-                            <tr>
-                                <th>Nome do Paciente</th>
-                                <th>Nº cartão/guia</th>
-                                <th>Data/Hora da Consulta</th>
-                                <th>Convênio</th>
-                                <th>Valor da Consulta</th>
-                                <th>Img Guia</th>
-                                <th>Editar/Excluir</th>
-                            </tr>
-                        </table>
-                    </div>
-                    
+
                     <h4>
                         Valor total
                         <span id="somaPeriodo"></span>
                     </h4>
-                    <a href="" id="visualizacao" target="_blank"></a> 
-                    
-                    <button
-                        class="button-print"
-                        type="button"
-                        id="btnImprimir"
-                        onclick="printTarget()"
-                    >
-                        Imprimir
-                    </button>
                 </div>
+
+
+                <a href="" id="visualizacao" target="_blank"></a>
+
+                <button class="button-print" type="button" id="btnImprimir" onclick="printTarget()">
+                    Imprimir
+                </button>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer>
-            <p>Desenvolvedores:</p>
+    <footer>
+        <p>Desenvolvedores:</p>
 
-            <div class="credit">
-                <a
-                    href="https://github.com/maycanin"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Mayson</span>
-                    <img
-                        src="./assets/devs/me.jpg"
-                        height="42"
-                        width="42"
-                        alt="Mayson C. Inácio"
-                    />
-                </a>
-                <a
-                    href="https://github.com/alexsandrocm"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Alexsandro</span>
+        <div class="credit">
+            <a href="https://github.com/maycanin" target="_blank" class="tooltip">
+                <span class="tooltiptext">Mayson</span>
+                <img src="./assets/devs/me.jpg" height="42" width="42" alt="Mayson C. Inácio" />
+            </a>
+            <a href="https://github.com/alexsandrocm" target="_blank" class="tooltip">
+                <span class="tooltiptext">Alexsandro</span>
 
-                    <img
-                        src="./assets/devs/Alexsandro.jpg"
-                        height="42"
-                        width="42"
-                        alt="Alexsandro"
-                    />
-                </a>
-                <a
-                    href="https://github.com/adersoncarvalho"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Aderson</span>
+                <img src="./assets/devs/Alexsandro.jpg" height="42" width="42" alt="Alexsandro" />
+            </a>
+            <a href="https://github.com/adersoncarvalho" target="_blank" class="tooltip">
+                <span class="tooltiptext">Aderson</span>
 
-                    <img
-                        src="./assets/devs/Aderson.jpg"
-                        height="42"
-                        width="42"
-                        alt="Aderson"
-                    />
-                </a>
-                <a
-                    href="https://github.com/marcoskaff02"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Marcos</span>
-                    <img
-                        src="./assets/devs/Marcos.jpg"
-                        height="42"
-                        width="42"
-                        alt="Marcos"
-                    />
-                </a>
-                <a
-                    href="https://github.com/Metteus96"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Mateus</span>
-                    <img
-                        src="./assets/devs/Mateus.jpg"
-                        height="42"
-                        width="42"
-                        alt="Mateus"
-                    />
-                </a>
-                <a
-                    href="https://github.com/muriloeising"
-                    target="_blank"
-                    class="tooltip"
-                >
-                    <span class="tooltiptext">Murilo</span>
-                    <img
-                        src="./assets/devs/Murilo.jpg"
-                        height="42"
-                        width="42"
-                        alt="Murilo"
-                    />
-                </a>
-            </div>
-        </footer>
+                <img src="./assets/devs/Aderson.jpg" height="42" width="42" alt="Aderson" />
+            </a>
+            <a href="https://github.com/marcoskaff02" target="_blank" class="tooltip">
+                <span class="tooltiptext">Marcos</span>
+                <img src="./assets/devs/Marcos.jpg" height="42" width="42" alt="Marcos" />
+            </a>
+            <a href="https://github.com/Metteus96" target="_blank" class="tooltip">
+                <span class="tooltiptext">Mateus</span>
+                <img src="./assets/devs/Mateus.jpg" height="42" width="42" alt="Mateus" />
+            </a>
+            <a href="https://github.com/muriloeising" target="_blank" class="tooltip">
+                <span class="tooltiptext">Murilo</span>
+                <img src="./assets/devs/Murilo.jpg" height="42" width="42" alt="Murilo" />
+            </a>
+        </div>
+    </footer>
 
-        <script>
-            window.onload = verificaLogin();
-        </script>
-        <script src="./js/bdConsultas.js"></script>
-        <script src="./js/atualizaRelogio.js"></script>
-        <script src="./js/conveniosBd.js"></script>
-        <script src="./js/relatorio.js"></script>
-        <script src="./js/script.js"></script>
-    </body>
+    <script>
+        window.onload = verificaLogin();
+    </script>
+    <script src="./js/bdConsultas.js"></script>
+    <script src="./js/atualizaRelogio.js"></script>
+    <script src="./js/conveniosBd.js"></script>
+    <script src="./js/relatorio.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
 </html>
